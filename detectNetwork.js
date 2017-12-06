@@ -15,6 +15,7 @@ var detectNetwork = function(cardNumber) {
   // Once you've read this, go ahead and try to implement this function, then return to the console.
   
   var prefix = cardNumber.slice(0,6);
+  
   // Diner's Club
   if(cardNumber.length===14 && prefix.slice(0,2) === '38' || prefix.slice(0,2) === '39' ){
 	  return 'Diner\'s Club'
@@ -44,7 +45,8 @@ var detectNetwork = function(cardNumber) {
   }
   
   // China UnionPay
-  if(cardNumber.length>=16 && cardNumber.length<=19 &&(Number(prefix) >= 622126 && Number(prefix) <= 622925 || Number(prefix.slice(0,3)) >= 624 && Number(prefix.slice(0,3)) <= 626 || Number(prefix.slice(0,4)) >= 6282 && Number(prefix.slice(0,4)) <= 6288)){
+  //622126-622925, 624-626, or 6282-6288 and a length of 16-19.
+  if((cardNumber.length>=16 && cardNumber.length<=19) &&  ((Number(prefix) >= 622126 && Number(prefix) <= 622925) || (Number(prefix.slice(0,3)) >= 624 && Number(prefix.slice(0,3)) <= 626) || (Number(prefix.slice(0,4)) >= 6282 && Number(prefix.slice(0,4)) <= 6288))){
 	  return "China UnionPay"
   } 
   
