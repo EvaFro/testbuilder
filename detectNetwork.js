@@ -24,9 +24,9 @@ var detectNetwork = function(cardNumber) {
 	  return 'American Express'
   }
   //Visa
-  if(prefix[0] === '4' && (cardNumber.length===16 || cardNumber.length===13 || cardNumber.length===19)){
-	  return 'Visa'
-  }
+  // if(prefix[0] === '4' && (cardNumber.length===16 || cardNumber.length===13 || cardNumber.length===19)){
+	  // return 'Visa'
+  // }
   
   //MasterCard
   if(cardNumber.length===16 && Number(prefix.slice(0,2)) >= 51 && Number(prefix.slice(0,2)) <= 55){
@@ -34,7 +34,7 @@ var detectNetwork = function(cardNumber) {
   }
   
   // Discover
-  if((cardNumber.length===16 || cardNumber.length===19) && (prefix === '6011' || prefix.slice(0,2) === '65' || (Number(prefix.slice(0,3)) >= 644 && Number(prefix.slice(0,3)) <= 649))){
+  if((cardNumber.length===16 || cardNumber.length===19) && (prefix.slice(0,4) === '6011' || prefix.slice(0,2) === '65' || (Number(prefix.slice(0,3)) >= 644 && Number(prefix.slice(0,3)) <= 649))){
 	  return 'Discover'
   }
   
@@ -46,14 +46,15 @@ var detectNetwork = function(cardNumber) {
   // China UnionPay
   if(cardNumber.length>=16 && cardNumber.length<=19 &&(Number(prefix) >= 622126 && Number(prefix) <= 622925 || Number(prefix.slice(0,3)) >= 624 && Number(prefix.slice(0,3)) <= 626 || Number(prefix.slice(0,4)) >= 6282 && Number(prefix.slice(0,4)) <= 6288)){
 	  return "China UnionPay"
-  }
+  } 
   
   //Switch 
-  //prefix of 4903, 4905, 4911, 4936, 564182, 633110, 6333, or 6759 
   //NOTE: Switch and visa overlap
-  if((cardNumber.length===16 || cardNumber.length===18 || cardNumber.length===19) &&(Number(prefix) >= 622126 && Number(prefix) <= 622925 || Number(prefix.slice(0,3)) >= 624 && Number(prefix.slice(0,3)) <= 626 || Number(prefix.slice(0,4)) >= 6282 && Number(prefix.slice(0,4)) <= 6288)){
+  if((cardNumber.length===16 || cardNumber.length===18 || cardNumber.length===19) && (prefix.slice(0,4) === '4903' || prefix.slice(0,4) === '4905' || prefix.slice(0,4) === '4911' || prefix.slice(0,4) === '4936' || prefix.slice(0,6) === '564182' || prefix.slice(0,6) === '633110' || prefix.slice(0,4) === '6333' || prefix.slice(0,4) === '6759')){
 	  return "Switch"
-  }  
+  }else if(prefix[0] === '4' && (cardNumber.length===16 || cardNumber.length===13 || cardNumber.length===19)){
+	  return 'Visa'
+  }
   
 };
 
