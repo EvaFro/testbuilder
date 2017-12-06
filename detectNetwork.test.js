@@ -152,22 +152,22 @@ describe('Discover', function() {
   // Tests without a function will be marked as "pending" and not run
   // Implement these tests (and others) and make them pass!
   it('has a prefix of 6011 and a length of 16',function(){
-	detectNetwork('6011345678901234').should.equal('Discover');
+	detectNetwork(addsPrefix(6011,16)).should.equal('Discover');
   });
   it('has a prefix of 6011 and a length of 19',function(){
-	detectNetwork('6011345678901234745').should.equal('Discover');
+	detectNetwork(addsPrefix(6011,19)).should.equal('Discover');
   });
   
   it('has a prefix of 65 and a length of 16',function(){
-	detectNetwork('6511345678901234').should.equal('Discover');
+	detectNetwork(addsPrefix(65,16)).should.equal('Discover');
   });
   
   it('has a prefix of 65 and a length of 19',function(){
-	detectNetwork('6511345678901234745').should.equal('Discover');
+	detectNetwork(addsPrefix(65,19)).should.equal('Discover');
   });
 
   for (var prefix = 644; prefix <= 649; prefix++) {
-		var should = chai.should();
+		// var should = chai.should();
 		//iffy
 	  (function(prefix) {
 		it('has a prefix of ' + prefix + ' and a length of 16',function(){
@@ -202,6 +202,66 @@ describe('Maestro', function() {
 		  
 	  }) (i)
   }
+});
+
+describe('China UnionPay', function() {
+	var should = chai.should();
+  // Write full test coverage for the China UnionPay card
+  //622126-622925, 624-626, or 6282-6288 and a length of 16-19.
+    for (var prefix = 624; prefix <= 626; prefix++) {
+	   for(var i = 16; i<=19; i++){
+		//iffy
+		(function(i) {
+		  (function(prefix) {
+			it('has a prefix of ' + prefix + ' and a length of ' + i,function(){
+			detectNetwork(addsPrefix(prefix,i)).should.equal('China UnionPay');
+			});
+		  })(prefix)
+		 })(i)
+   }};
+
+    for (var prefix = 6282; prefix <= 6288; prefix++) {
+	   for(var i = 16; i<=19; i++){
+		//iffy
+		(function(i) {
+		  (function(prefix) {
+			it('has a prefix of ' + prefix + ' and a length of ' + i,function(){
+			detectNetwork(addsPrefix(prefix,i)).should.equal('China UnionPay');
+			});
+		  })(prefix)
+		 })(i)
+   }};
+   
+    for (var prefix = 622126; prefix <= 622925; prefix++) {
+	   for(var i = 16; i<=19; i++){
+		//iffy
+		(function(i) {
+		  (function(prefix) {
+			it('has a prefix of ' + prefix + ' and a length of ' + i,function(){
+			detectNetwork(addsPrefix(prefix,i)).should.equal('China UnionPay');
+			});
+		  })(prefix)
+		 })(i)
+   }}
+
+});
+
+describe('Switch', function() {
+	var should = chai.should();
+  // Write full test coverage for the China UnionPay card
+  //622126-622925, 624-626, or 6282-6288 and a length of 16-19.
+    for (var prefix = 624; prefix <= 626; prefix++) {
+	   for(var i = 16; i<=19; i++){
+		//iffy
+		(function(i) {
+		  (function(prefix) {
+			it('has a prefix of ' + prefix + ' and a length of ' + i,function(){
+			detectNetwork(addsPrefix(prefix,i)).should.equal('Switch');
+			});
+		  })(prefix)
+		 })(i)
+   }};
+
 });
 
 describe('should support China UnionPay')
