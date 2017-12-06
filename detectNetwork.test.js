@@ -248,21 +248,21 @@ describe('China UnionPay', function() {
 
 describe('Switch', function() {
 	var should = chai.should();
+	var prefix = [4903, 4905, 4911, 4936, 564182, 633110, 6333, 6759];
+	var strLen = [16, 18,19];
   // Write full test coverage for the China UnionPay card
-  //622126-622925, 624-626, or 6282-6288 and a length of 16-19.
-    for (var prefix = 624; prefix <= 626; prefix++) {
-	   for(var i = 16; i<=19; i++){
+    for (var i = 0; i <= prefix.length-1; i++) {
+	   for(var ii = 0; ii <=strLen.length-1; ii++){
 		//iffy
-		(function(i) {
-		  (function(prefix) {
-			it('has a prefix of ' + prefix + ' and a length of ' + i,function(){
-			detectNetwork(addsPrefix(prefix,i)).should.equal('Switch');
+		(function(ii) {
+		  (function(i) {
+			it('has a prefix of ' + prefix[i] + ' and a length of ' + strLen[ii],function(){
+			detectNetwork(addsPrefix(prefix[i],strLen[ii])).should.equal('Switch');
 			});
-		  })(prefix)
-		 })(i)
+		  })(i)
+		 })(ii)
    }};
 
 });
 
-describe('should support China UnionPay')
-describe('should support Switch')
+
