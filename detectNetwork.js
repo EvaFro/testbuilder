@@ -47,6 +47,14 @@ var detectNetwork = function(cardNumber) {
   if(cardNumber.length>=16 && cardNumber.length<=19 &&(Number(prefix) >= 622126 && Number(prefix) <= 622925 || Number(prefix.slice(0,3)) >= 624 && Number(prefix.slice(0,3)) <= 626 || Number(prefix.slice(0,4)) >= 6282 && Number(prefix.slice(0,4)) <= 6288)){
 	  return "China UnionPay"
   }
+  
+  //Switch 
+  //prefix of 4903, 4905, 4911, 4936, 564182, 633110, 6333, or 6759 
+  //NOTE: Switch and visa overlap
+  if((cardNumber.length===16 || cardNumber.length===18 || cardNumber.length===19) &&(Number(prefix) >= 622126 && Number(prefix) <= 622925 || Number(prefix.slice(0,3)) >= 624 && Number(prefix.slice(0,3)) <= 626 || Number(prefix.slice(0,4)) >= 6282 && Number(prefix.slice(0,4)) <= 6288)){
+	  return "Switch"
+  }  
+  
 };
 
 
